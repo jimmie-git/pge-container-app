@@ -1,0 +1,17 @@
+# Navigate to your project directory
+cd path/to/your/project
+
+# Initialize Git if you haven't already
+git init
+
+# Add your remote GitHub repository
+git remote add origin https://github.com/jimmie-git/pge-container-app.git
+
+# Add all files to the staging area
+git add .
+
+# Commit the files
+git commit -m "Initial commit with Flask app and requirements"
+
+# Push the files to GitHub
+git push -u origin main
