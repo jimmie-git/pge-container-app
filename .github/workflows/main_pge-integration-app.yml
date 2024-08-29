@@ -38,4 +38,22 @@ jobs:
 
     steps:
     - name: Download artifact from build job
-      uses: actions/download-artifact@
+      uses: actions/download-artifact@v4
+      with:
+        name: python-app
+
+    - name: Unzip artifact for deployment
+      run: unzip release.zip
+
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_749B8C3378A745E5998B2D94702EB2D9 }}
+        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EF1AD0E3D1D04CB6A63B214461EA8CF5 }}
+        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_04D652074FF140AD9BA863CA964DC377 }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: 'pge-integration-app'
+        slot-name: 'Production'
