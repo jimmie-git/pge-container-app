@@ -5,10 +5,6 @@ on:
     branches:
       - main
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -52,9 +48,7 @@ jobs:
     - name: Azure Login
       uses: azure/login@v2
       with:
-        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_749B8C3378A745E5998B2D94702EB2D9 }}
-        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EF1AD0E3D1D04CB6A63B214461EA8CF5 }}
-        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_04D652074FF140AD9BA863CA964DC377 }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
