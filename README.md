@@ -33,3 +33,21 @@ pyinstaller --onefile --noconsole email_sender.spec
 ```
 
 The resulting executable will appear in the `dist` directory.
+
+---
+
+## PG&E Green Button Integration
+
+The repository also contains sample modules for integrating with PG&E's
+Share My Data API using OAuth2 and mutual TLS. Key files include:
+
+- `OAuth2.py` – exchanges authorization codes for access tokens and refreshes
+  tokens.
+- `ClientCredentials.py` – obtains a client access token for connectivity tests.
+- `Api.py` – makes authenticated data requests.
+- `pge_example.py` – minimal Flask app demonstrating the OAuth callback flow.
+
+These modules require the `requests` and `Flask` packages in addition to the
+original requirements. Update `requirements.txt` accordingly and replace the
+placeholders in `pge_example.py` with the credentials and certificate paths
+provided by PG&E.
