@@ -1,18 +1,26 @@
 """Simple Flask example demonstrating PG&E OAuth flow."""
 
+import os
 from flask import Flask, redirect, request
 from OAuth2 import OAuth2
 
 app = Flask(__name__)
 
-# Configuration placeholders - replace with real values
-CLIENT_ID = "your_client_id"
-CLIENT_SECRET = "your_client_secret"
-REDIRECT_URI = "https://yourapp.com/oauth/callback"
-AUTH_URL = "https://api.pge.com/datacustodian/oauth/v2/authorize"
-TOKEN_URL = "https://api.pge.com/datacustodian/oauth/v2/token"
-CERT_CRT = "path/to/client.crt"
-CERT_KEY = "path/to/client.key"
+# Configuration values
+# These may be set via environment variables or edited directly below.
+CLIENT_ID = os.environ.get("PGE_CLIENT_ID", "your_client_id")
+CLIENT_SECRET = os.environ.get("PGE_CLIENT_SECRET", "your_client_secret")
+REDIRECT_URI = os.environ.get("PGE_REDIRECT_URI", "https://yourapp.com/oauth/callback")
+AUTH_URL = os.environ.get(
+    "PGE_AUTH_URL",
+    "https://api.pge.com/datacustodian/oauth/v2/authorize",
+)
+TOKEN_URL = os.environ.get(
+    "PGE_TOKEN_URL",
+    "https://api.pge.com/datacustodian/oauth/v2/token",
+)
+CERT_CRT = os.environ.get("PGE_CERT_CRT", "path/to/client.crt")
+CERT_KEY = os.environ.get("PGE_CERT_KEY", "path/to/client.key")
 
 oauth_client = OAuth2(CLIENT_ID, CLIENT_SECRET, CERT_CRT, CERT_KEY)
 

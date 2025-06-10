@@ -51,3 +51,33 @@ These modules require the `requests` and `Flask` packages in addition to the
 original requirements. Update `requirements.txt` accordingly and replace the
 placeholders in `pge_example.py` with the credentials and certificate paths
 provided by PG&E.
+
+### Running the example
+
+1. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Set your PG&E credentials and certificate paths as environment variables**
+
+   ```bash
+   export PGE_CLIENT_ID="<your_client_id>"
+   export PGE_CLIENT_SECRET="<your_client_secret>"
+   export PGE_REDIRECT_URI="http://localhost:5000/oauth/callback"
+   export PGE_AUTH_URL="https://api.pge.com/datacustodian/oauth/v2/authorize"
+   export PGE_TOKEN_URL="https://api.pge.com/datacustodian/oauth/v2/token"
+   export PGE_CERT_CRT="/path/to/client.crt"
+   export PGE_CERT_KEY="/path/to/client.key"
+   ```
+
+3. **Start the Flask app**
+
+   ```bash
+   python pge_example.py
+   ```
+
+   Visit `http://localhost:5000` in your browser and click **Connect to PG&E**.
+   After logging in and authorizing access, the callback route will display the
+   token response from PG&E.
