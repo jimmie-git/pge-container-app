@@ -48,6 +48,10 @@ Share My Data API using OAuth2 and mutual TLS. Key files include:
 - `pge_example.py` – minimal Flask app demonstrating the OAuth callback flow.
 
 These modules require the `requests` and `Flask` packages in addition to the
-original requirements. Update `requirements.txt` accordingly and replace the
-placeholders in `pge_example.py` with the credentials and certificate paths
-provided by PG&E.
+original requirements. Before running `pge_example.py`, set the following
+environment variables with the credentials and certificate paths provided by PG&E:
+
+- `PGE_CLIENT_ID` – your client ID
+- `PGE_CLIENT_SECRET` – your client secret
+- `PGE_CERT_CRT` – path to the `.crt` certificate file
+- `PGE_CERT_KEY` – path to the corresponding private key

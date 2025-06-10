@@ -2,17 +2,18 @@
 
 from flask import Flask, redirect, request
 from OAuth2 import OAuth2
+import os
 
 app = Flask(__name__)
 
-# Configuration placeholders - replace with real values
-CLIENT_ID = "your_client_id"
-CLIENT_SECRET = "your_client_secret"
+# Configuration via environment variables
+CLIENT_ID = os.getenv("PGE_CLIENT_ID")
+CLIENT_SECRET = os.getenv("PGE_CLIENT_SECRET")
 REDIRECT_URI = "https://yourapp.com/oauth/callback"
 AUTH_URL = "https://api.pge.com/datacustodian/oauth/v2/authorize"
 TOKEN_URL = "https://api.pge.com/datacustodian/oauth/v2/token"
-CERT_CRT = "path/to/client.crt"
-CERT_KEY = "path/to/client.key"
+CERT_CRT = os.getenv("PGE_CERT_CRT")
+CERT_KEY = os.getenv("PGE_CERT_KEY")
 
 oauth_client = OAuth2(CLIENT_ID, CLIENT_SECRET, CERT_CRT, CERT_KEY)
 
